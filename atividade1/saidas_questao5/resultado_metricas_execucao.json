@@ -1,0 +1,56 @@
+{
+  "timestamp": "2026-04-04T21:01:50.032824",
+  "entrada": "/home/william/Projetos/PI/atividade1/imagens questao 5/image.png",
+  "ordem_blocos": [
+    [
+      6,
+      11,
+      13,
+      3
+    ],
+    [
+      8,
+      16,
+      1,
+      9
+    ],
+    [
+      12,
+      14,
+      2,
+      7
+    ],
+    [
+      4,
+      15,
+      10,
+      5
+    ]
+  ],
+  "dimensoes_bloco": [
+    256,
+    256
+  ],
+  "metricas": {
+    "recorte_base": {
+      "shape": [
+        1024,
+        1024
+      ],
+      "min": 0,
+      "max": 255,
+      "mean": 90.35577583312988,
+      "std": 83.65162714306089
+    },
+    "mosaico": {
+      "shape": [
+        1024,
+        1024
+      ],
+      "min": 0,
+      "max": 255,
+      "mean": 90.35577583312988,
+      "std": 83.65162714306089
+    }
+  }
+}
