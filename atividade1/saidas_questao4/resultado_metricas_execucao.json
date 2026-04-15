@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-04-04T18:06:14.086945",
-  "entrada": "/home/william/Projetos/PI/atividade1/imagens questao 4 /bermuda.jpg",
+  "timestamp": "2026-04-15T16:51:42.186427",
+  "entrada": "/home/william/Projetos/PI/atividade1/imagens questao 4 /bermuda2.png",
   "dimensoes_entrada": [
-    400,
-    680
+    1024,
+    1024
   ],
   "transformacoes": [
     {
@@ -11,49 +11,49 @@
       "arquivo": "01_bermuda_negativo.png",
       "metricas": {
         "min": 0,
-        "max": 206,
-        "mean": 26.32987867647059,
-        "std": 60.076193777030184
+        "max": 255,
+        "mean": 131.96627807617188,
+        "std": 59.48526157908073
       }
     },
     {
       "nome": "remapeado_100_200",
       "arquivo": "02_bermuda_remapeado_100_200.png",
       "metricas": {
-        "min": 119,
+        "min": 100,
         "max": 200,
-        "mean": 189.55963602941176,
-        "std": 23.81175320304701
+        "mean": 147.7560510635376,
+        "std": 23.33176979992169
       }
     },
     {
       "nome": "linhas_pares_invertidas",
       "arquivo": "03_bermuda_linhas_pares_invertidas.png",
       "metricas": {
-        "min": 49,
+        "min": 0,
         "max": 255,
-        "mean": 228.6701213235294,
-        "std": 60.076193777030184
+        "mean": 123.03372192382812,
+        "std": 59.48526157908073
       }
     },
     {
       "nome": "espelhado_metade_superior",
       "arquivo": "04_bermuda_espelhado_metade_superior.png",
       "metricas": {
-        "min": 49,
+        "min": 2,
         "max": 255,
-        "mean": 231.84264705882353,
-        "std": 57.83902551396284
+        "mean": 138.72744178771973,
+        "std": 63.406180372114726
       }
     },
     {
       "nome": "espelhamento_vertical",
       "arquivo": "05_bermuda_espelhamento_vertical.png",
       "metricas": {
-        "min": 49,
+        "min": 0,
         "max": 255,
-        "mean": 228.6701213235294,
-        "std": 60.076193777030184
+        "mean": 123.03372192382812,
+        "std": 59.48526157908073
       }
     }
   ]

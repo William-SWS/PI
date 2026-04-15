@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-04-04T17:47:38.748709",
+  "timestamp": "2026-04-15T16:51:17.071918",
   "entradas": [
-    "/home/william/Projetos/PI/imagens questao 3/bermuda.jpg",
-    "/home/william/Projetos/PI/imagens questao 3/blusa.jpg"
+    "/home/william/Projetos/PI/imagens questao 3/bermuda2.png",
+    "/home/william/Projetos/PI/imagens questao 3/blusa2.png"
   ],
   "combinacoes": [
     {
@@ -23,22 +23,22 @@
   ],
   "metricas": {
     "resultado_0.2_0.8.png": {
-      "min": 76,
-      "max": 255,
-      "mean": 219.24769485294118,
-      "std": 62.557639158721194
+      "min": 8,
+      "max": 246,
+      "mean": 127.12053680419922,
+      "std": 52.43819645372315
     },
     "resultado_0.5_0.5.png": {
-      "min": 65,
-      "max": 255,
-      "mean": 222.7375992647059,
-      "std": 57.92740870211917
+      "min": 12,
+      "max": 244,
+      "mean": 125.57920551300049,
+      "std": 50.09034520148637
     },
     "resultado_0.8_0.2.png": {
-      "min": 55,
-      "max": 255,
-      "mean": 226.16017647058823,
-      "std": 57.79662802573632
+      "min": 12,
+      "max": 246,
+      "mean": 124.0263204574585,
+      "std": 53.973769427373504
     }
   }
 }
