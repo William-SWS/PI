@@ -3,9 +3,15 @@
 
 ## Aluno: Samuel William Silva Almeida
 ### Matricula: 1631353
-Este relatorio descreve a implementacao das seis questoes do notebook atividade1.ipynb. Para cada questao, o texto apresenta o procedimento aplicado, mostra as imagens de entrada e de saida e inclui o trecho de codigo implementado ate o ponto imediatamente anterior a plotagem dos resultados.
 
-## Questao 1 - Esboco a Lapis
+### Tema das imagens: moda
+Dado o tema escolhido pelo aluno e seu grupo para o futuro trabalho final, as imagens desse trabalho e dos trabalhos futuros vão consistir em:
+- Roupas;
+- Calçados;
+- Pessoas/modelos posando;
+- Acessórios e bijuteria
+
+## Questao 1 - Esboço a Lapis
 
 Nesta etapa, a imagem colorida foi convertida para tons de cinza por combinacao ponderada dos canais BGR. Em seguida, foi aplicado um desfoque gaussiano manual usando um kernel 21x21 para suavizar detalhes. Por fim, foi usada a divisao do tipo dodge entre a imagem em cinza e a versao desfocada para realcar contornos e produzir o efeito de esboco.
 
@@ -32,7 +38,7 @@ Resultado final do esboco:
 ### Codigo implementado ate antes da plotagem
 
 ```python
-# Questao 1 - implementacao completa
+
 img_q1_path = ROOT / "portrait-handsome-smiling-stylish-young-man-model-wearing-jeans-clothes-sunglasses-fashion-man.jpg"
 img_q1 = cv2.imread(str(img_q1_path))
 if img_q1 is None:
@@ -86,6 +92,10 @@ cv2.imwrite(str(OUT_Q1 / "resultado_desfocada.jpg"), desfocada_q1)
 cv2.imwrite(str(OUT_Q1 / "resultado_esboco.jpg"), esboco_q1)
 ```
 
+### Análise e Insights
+
+O efeito de esboço a lápis combina conversão para escala de cinza com desfoque gaussiano seguido de divisão dodge. Este processo realça as bordas e contornos da imagem original, produzindo um resultado visual semelhante a um desenho manual. O kernel gaussiano 21x21 suaviza principalmente os detalhes internos, enquanto a operação dodge compara diferenças de intensidade entre a versão original e desfocada. O resultado é uma imagem que apresenta baixo nível de detalhe em regiões uniformes e alto contraste nas transições, destacando contornos de roupas, expressões faciais e texturas relevantes no contexto de moda.
+
 ## Questao 2 - Correcao Gama
 
 Nesta questao, a imagem monocromatica foi normalizada para o intervalo [0, 1], transformada por potencia com fator 1/gamma e reconvertida para [0, 255]. O experimento foi repetido para diferentes valores de gamma com o objetivo de comparar os efeitos de clareamento e escurecimento da imagem.
@@ -129,7 +139,6 @@ Comparativo salvo:
 ### Codigo implementado ate antes da plotagem
 
 ```python
-# Questao 2 - implementacao completa
 img_q2_path = ROOT / "imagem2.jpg"
 img_q2 = cv2.imread(str(img_q2_path), cv2.IMREAD_GRAYSCALE)
 if img_q2 is None:
@@ -150,19 +159,23 @@ for gamma in gammas_q2:
     cv2.imwrite(str(OUT_Q2 / f"imagem2_gama_{gamma}.jpg"), resultado)
 ```
 
+### Análise e Insights
+
+A correção gama demonstra como a aplicação de transformações não-lineares no espaço de intensidades altera dramaticamente a percepção visual de uma imagem. Para valores de gamma menores que 1.0 (0.25, 0.5), a imagem é clarificada, expandindo os valores de pixel na faixa superior; para valores maiores que 1.0 (1.5, 2.0, 3.0), a imagem é escurecida, comprimindo os valores para a faixa inferior. O valor gamma = 1.0 preserva a imagem original. Este mecanismo é fundamental em processamento de imagens para compensar características de dispositivos de captura e exibição, sendo especialmente útil em fotografia e design quando imagens capturadas em condições de iluminação inadequada precisam ser corrigidas.
+
 ## Questao 3 - Media Ponderada em Niveis de Cinza
 
-Nesta parte, duas imagens de mesmo tamanho foram convertidas para cinza e combinadas por media ponderada. Foram testadas tres combinacoes de pesos para verificar como a contribuicao relativa de cada imagem altera o resultado final. Alem das imagens, tambem foram registradas metricas basicas em arquivo JSON.
+Nesta parte, duas imagens de mesmo tamanho foram convertidas para cinza e combinadas por media ponderada. Foram testadas tres combinacoes de pesos para verificar como a contribuicao relativa de cada imagem altera o resultado final. 
 
 ### Imagens usadas
 
 Primeira imagem de entrada:
 
-![Q3 - Entrada 1](<../../imagens questao 3/bermuda.jpg>)
+![Q3 - Entrada 1](<../../imagens questao 3/bermuda2.png>)
 
 Segunda imagem de entrada:
 
-![Q3 - Entrada 2](<../../imagens questao 3/blusa.jpg>)
+![Q3 - Entrada 2](<../../imagens questao 3/blusa2.png>)
 
 ### Imagens geradas
 
@@ -183,8 +196,8 @@ Combinacao 0.8 e 0.2:
 ```python
 # Questao 3 - implementacao completa
 pasta_q3 = ROOT.parent / "imagens questao 3"
-img_q3_1_path = pasta_q3 / "bermuda.jpg"
-img_q3_2_path = pasta_q3 / "blusa.jpg"
+img_q3_1_path = pasta_q3 / "bermuda2.png"
+img_q3_2_path = pasta_q3 / "blusa2.png"
 img_q3_1 = cv2.imread(str(img_q3_1_path))
 img_q3_2 = cv2.imread(str(img_q3_2_path))
 
@@ -233,6 +246,10 @@ for w1, w2, nome_saida in comb_q3:
     cv2.imwrite(str(OUT_Q3 / nome_saida), saida)
 ```
 
+### Análise e Insights
+
+A combinação ponderada de duas imagens permite transições suaves e controle fino sobre a contribuição relativa de cada fonte. Quando w1 = 0.2 e w2 = 0.8, a imagem resultante apresenta características predominantemente da segunda imagem, funcionando como uma fusão que preserva detalhes de ambas. A proporção 0.5:0.5 distribui igualmente a influência, criando uma composição balanceada. Este tipo de operação é essencial em técnicas de blending e composição fotográfica, permitindo criar transições artísticas ou corrigir exposições diferenciadas quando múltiplas capturas são necessárias. No contexto de moda, isso facilita criação de efeitos visuais e comparação de sobreposições de peças.
+
 ## Questao 4 - Transformacoes no Espaco de Intensidades
 
 Nesta questao foram aplicadas cinco transformacoes sobre uma imagem em tons de cinza: negativo, remapeamento de faixa para [100, 200], inversao horizontal das linhas pares, espelhamento da metade superior na metade inferior e espelhamento vertical completo. Cada resultado foi salvo individualmente e acompanhado por metricas basicas.
@@ -241,7 +258,7 @@ Nesta questao foram aplicadas cinco transformacoes sobre uma imagem em tons de c
 
 Imagem de entrada monocromatica:
 
-![Q4 - Entrada](<../imagens questao 4 /bermuda.jpg>)
+![Q4 - Entrada](<../imagens questao 4 /bermuda2.png>)
 
 ### Imagens geradas
 
@@ -268,9 +285,8 @@ Espelhamento vertical:
 ### Codigo implementado ate antes da plotagem
 
 ```python
-# Questao 4 - implementacao completa
 pasta_q4 = ROOT / "imagens questao 4 "
-img_q4_path = pasta_q4 / "bermuda.jpg"
+img_q4_path = pasta_q4 / "bermuda2.png"
 img_q4 = cv2.imread(str(img_q4_path), cv2.IMREAD_GRAYSCALE)
 if img_q4 is None:
     raise FileNotFoundError(f"Nao foi possivel carregar a imagem da questao 4: {img_q4_path}")
@@ -342,6 +358,10 @@ for nome, arquivo, imagem in transformacoes_q4:
     metricas_q4[arquivo] = metricas_basicas(imagem)
 ```
 
+### Análise e Insights
+
+As transformações de espaço de intensidades demonstram manipulações fundamentais em processamento de imagens. O negativo inverte a percepção visual completa, útil para revelar detalhes em regiões de sombra. O remapeamento para [100, 200] redimensiona a faixa dinâmica, comprimindo o contraste e criando uma versão mais suave. Inversões de linhas pares e espelhamentos executam operações espaciais que preservam informação mas alteram layout, úteis para correções de captura ou criação de efeitos artísticos. O espelhamento vertical completo, mais simples, cria simetria e pode ser usado para análise de composição fotográfica. Conjuntamente, essas operações exemplificam como o mesmo pixel pode ser manipulado de diversas formas para obter efeitos visuais distintos sem perda de dados.
+
 ## Questao 5 - Mosaico 4 x 4
 
 Aqui a imagem foi recortada para dimensoes multiplas de 4 e dividida em 16 blocos iguais. Depois disso, os blocos foram rearranjados conforme a ordem definida no enunciado para formar o mosaico final 4x4. O processo gera tanto o recorte base quanto o mosaico reconstruido.
@@ -369,7 +389,6 @@ Comparativo salvo:
 ### Codigo implementado ate antes da plotagem
 
 ```python
-# Questao 5 - implementacao completa
 img_q5_path = ROOT / "imagens questao 5" / "image.png"
 img_q5 = cv2.imread(str(img_q5_path), cv2.IMREAD_GRAYSCALE)
 if img_q5 is None:
@@ -416,6 +435,10 @@ ok_mosaico = cv2.imwrite(str(OUT_Q5 / "02_q5_mosaico_4x4.png"), mosaico_q5)
 if not ok_recorte or not ok_mosaico:
     raise IOError("Falha ao salvar resultados da questao 5")
 ```
+
+### Análise e Insights
+
+A reorganização de blocos em mosaico preserva toda a informação original da imagem mas reordena sua disposição espacial conforme padrão predefinido. Este procedimento demonstra princípios de indexação e rearranjo de dados, frequentemente usado em processamento de imagens para criar efeitos visuais, testes de resistência de algoritmos ou extração de padrões. A manutenção dimensional (mesma resolução antes e depois) indica que nenhuma informação é descartada, apenas rearranjada. Visualmente, o resultado pode parecer caótico dependendo da ordem definida, ilustrando como a disposição espacial dos elementos influencia a interpretação visual mesmo quando o conteúdo pixel-a-pixel permanece constante.
 
 ## Questao 6 - Quantizacao em Diferentes Niveis
 
@@ -464,7 +487,6 @@ Comparativo salvo:
 ### Codigo implementado ate antes da plotagem
 
 ```python
-# Questao 6 - implementacao completa
 img_q6_path = ROOT / "imagens questao 6" / "image.png"
 img_q6 = cv2.imread(str(img_q6_path), cv2.IMREAD_GRAYSCALE)
 if img_q6 is None:
@@ -491,6 +513,10 @@ for nivel in niveis_q6:
     if not ok:
         raise IOError(f"Falha ao salvar quantizacao de {nivel} niveis")
 ```
+
+### Análise e Insights
+
+A quantização reduz a profundidade de cor de uma imagem, passando de 256 niveis para quantidades progressivamente menores. Com 256 niveis, a imagem original é preservada; em 64 niveis, a redução é imperceptível exceto por possível posterização suave; em 32 e 16 niveis, o efeito posterizado torna-se evidente com bandas de cor distintas. Em 8, 4 e especialmente 2 niveis, a perda de detalhes é drástica, reduzindo a imagem a essencialmente silhuetas e altos contrastes. Este processo demonstra o conceito de profundidade de bits e sua relação com qualidade visual. Quantização é usado para compressão de imagem, criação de efeitos artísticos e simulação de limitações de dispositivos legacy. A progressão visual ilustra perfeitamente o trade-off entre tamanho de arquivo e fidelidade visual.
 
 ## Encerramento
 
