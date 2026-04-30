@@ -1,0 +1,278 @@
+{
+  "input": "/home/william/Projetos/PI/atividade2/image2.png",
+  "outdir": "/home/william/Projetos/PI/atividade2/saidas/saidas_questao2",
+  "parametros": {
+    "low_high_radii": [
+      15,
+      30,
+      60
+    ],
+    "band_pairs": [
+      [
+        10,
+        30
+      ],
+      [
+        20,
+        50
+      ]
+    ],
+    "compress_threshold_percentiles": [
+      70,
+      85,
+      95
+    ]
+  },
+  "fft": {
+    "espectro_centralizado": "/home/william/Projetos/PI/atividade2/saidas/saidas_questao2/00_fft/fft_espectro_centralizado.png"
+  },
+  "filtros": [
+    {
+      "tipo": "passa-baixa",
+      "parametro": "r=15",
+      "mascara": "/home/william/Projetos/PI/atividade2/saidas/saidas_questao2/01_masks/mask_passabaixa_r15.png",
+      "espectro_filtrado": "/home/william/Projetos/PI/atividade2/saidas/saidas_questao2/02_filtradas/espectro_passabaixa_r15.png",
+      "imagem_filtrada": "/home/william/Projetos/PI/atividade2/saidas/saidas_questao2/02_filtradas/filtro_passabaixa_r15.png",
+      "estatisticas": {
+        "min": 0,
+        "max": 255,
+        "media": 66.72282396019678,
+        "desvio_padrao": 68.59618378260141,
+        "shape": [
+          559,
+          1024
+        ]
+      }
+    },
+    {
+      "tipo": "passa-alta",
+      "parametro": "r=15",
+      "mascara": "/home/william/Projetos/PI/atividade2/saidas/saidas_questao2/01_masks/mask_passaalta_r15.png",
+      "espectro_filtrado": "/home/william/Projetos/PI/atividade2/saidas/saidas_questao2/02_filtradas/espectro_passaalta_r15.png",
+      "imagem_filtrada": "/home/william/Projetos/PI/atividade2/saidas/saidas_questao2/02_filtradas/filtro_passaalta_r15.png",
+      "estatisticas": {
+        "min": 0,
+        "max": 255,
+        "media": 134.97899604483453,
+        "desvio_padrao": 14.428302562695572,
+        "shape": [
+          559,
+          1024
+        ]
+      }
+    },
+    {
+      "tipo": "passa-baixa",
+      "parametro": "r=30",
+      "mascara": "/home/william/Projetos/PI/atividade2/saidas/saidas_questao2/01_masks/mask_passabaixa_r30.png",
+      "espectro_filtrado": "/home/william/Projetos/PI/atividade2/saidas/saidas_questao2/02_filtradas/espectro_passabaixa_r30.png",
+      "imagem_filtrada": "/home/william/Projetos/PI/atividade2/saidas/saidas_questao2/02_filtradas/filtro_passabaixa_r30.png",
+      "estatisticas": {
+        "min": 0,
+        "max": 255,
+        "media": 78.99363225346602,
+        "desvio_padrao": 68.71240642288348,
+        "shape": [
+          559,
+          1024
+        ]
+      }
+    },
+    {
+      "tipo": "passa-alta",
+      "parametro": "r=30",
+      "mascara": "/home/william/Projetos/PI/atividade2/saidas/saidas_questao2/01_masks/mask_passaalta_r30.png",
+      "espectro_filtrado": "/home/william/Projetos/PI/atividade2/saidas/saidas_questao2/02_filtradas/espectro_passaalta_r30.png",
+      "imagem_filtrada": "/home/william/Projetos/PI/atividade2/saidas/saidas_questao2/02_filtradas/filtro_passaalta_r30.png",
+      "estatisticas": {
+        "min": 0,
+        "max": 255,
+        "media": 129.5898123043381,
+        "desvio_padrao": 11.694262112132659,
+        "shape": [
+          559,
+          1024
+        ]
+      }
+    },
+    {
+      "tipo": "passa-baixa",
+      "parametro": "r=60",
+      "mascara": "/home/william/Projetos/PI/atividade2/saidas/saidas_questao2/01_masks/mask_passabaixa_r60.png",
+      "espectro_filtrado": "/home/william/Projetos/PI/atividade2/saidas/saidas_questao2/02_filtradas/espectro_passabaixa_r60.png",
+      "imagem_filtrada": "/home/william/Projetos/PI/atividade2/saidas/saidas_questao2/02_filtradas/filtro_passabaixa_r60.png",
+      "estatisticas": {
+        "min": 0,
+        "max": 254,
+        "media": 72.87031284939624,
+        "desvio_padrao": 72.78603879637562,
+        "shape": [
+          559,
+          1024
+        ]
+      }
+    },
+    {
+      "tipo": "passa-alta",
+      "parametro": "r=60",
+      "mascara": "/home/william/Projetos/PI/atividade2/saidas/saidas_questao2/01_masks/mask_passaalta_r60.png",
+      "espectro_filtrado": "/home/william/Projetos/PI/atividade2/saidas/saidas_questao2/02_filtradas/espectro_passaalta_r60.png",
+      "imagem_filtrada": "/home/william/Projetos/PI/atividade2/saidas/saidas_questao2/02_filtradas/filtro_passaalta_r60.png",
+      "estatisticas": {
+        "min": 0,
+        "max": 255,
+        "media": 146.39777015317532,
+        "desvio_padrao": 9.032640583210787,
+        "shape": [
+          559,
+          1024
+        ]
+      }
+    },
+    {
+      "tipo": "passa-faixa",
+      "parametro": "r1=10,r2=30",
+      "mascara": "/home/william/Projetos/PI/atividade2/saidas/saidas_questao2/01_masks/mask_passafaixa_r10_30.png",
+      "espectro_filtrado": "/home/william/Projetos/PI/atividade2/saidas/saidas_questao2/02_filtradas/espectro_passafaixa_r10_30.png",
+      "imagem_filtrada": "/home/william/Projetos/PI/atividade2/saidas/saidas_questao2/02_filtradas/filtro_passafaixa_r10_30.png",
+      "estatisticas": {
+        "min": 0,
+        "max": 255,
+        "media": 124.47911134559482,
+        "desvio_padrao": 23.40361960229238,
+        "shape": [
+          559,
+          1024
+        ]
+      }
+    },
+    {
+      "tipo": "rejeita-faixa",
+      "parametro": "r1=10,r2=30",
+      "mascara": "/home/william/Projetos/PI/atividade2/saidas/saidas_questao2/01_masks/mask_rejeitafaixa_r10_30.png",
+      "espectro_filtrado": "/home/william/Projetos/PI/atividade2/saidas/saidas_questao2/02_filtradas/espectro_rejeitafaixa_r10_30.png",
+      "imagem_filtrada": "/home/william/Projetos/PI/atividade2/saidas/saidas_questao2/02_filtradas/filtro_rejeitafaixa_r10_30.png",
+      "estatisticas": {
+        "min": 0,
+        "max": 255,
+        "media": 81.0402941217576,
+        "desvio_padrao": 60.39277651016372,
+        "shape": [
+          559,
+          1024
+        ]
+      }
+    },
+    {
+      "tipo": "passa-faixa",
+      "parametro": "r1=20,r2=50",
+      "mascara": "/home/william/Projetos/PI/atividade2/saidas/saidas_questao2/01_masks/mask_passafaixa_r20_50.png",
+      "espectro_filtrado": "/home/william/Projetos/PI/atividade2/saidas/saidas_questao2/02_filtradas/espectro_passafaixa_r20_50.png",
+      "imagem_filtrada": "/home/william/Projetos/PI/atividade2/saidas/saidas_questao2/02_filtradas/filtro_passafaixa_r20_50.png",
+      "estatisticas": {
+        "min": 0,
+        "max": 254,
+        "media": 121.36946905746869,
+        "desvio_padrao": 17.550247459838708,
+        "shape": [
+          559,
+          1024
+        ]
+      }
+    },
+    {
+      "tipo": "rejeita-faixa",
+      "parametro": "r1=20,r2=50",
+      "mascara": "/home/william/Projetos/PI/atividade2/saidas/saidas_questao2/01_masks/mask_rejeitafaixa_r20_50.png",
+      "espectro_filtrado": "/home/william/Projetos/PI/atividade2/saidas/saidas_questao2/02_filtradas/espectro_rejeitafaixa_r20_50.png",
+      "imagem_filtrada": "/home/william/Projetos/PI/atividade2/saidas/saidas_questao2/02_filtradas/filtro_rejeitafaixa_r20_50.png",
+      "estatisticas": {
+        "min": 0,
+        "max": 255,
+        "media": 93.9572443817084,
+        "desvio_padrao": 58.54008037858935,
+        "shape": [
+          559,
+          1024
+        ]
+      }
+    }
+  ],
+  "compressao": [
+    {
+      "label": "p70",
+      "arquivo": "/home/william/Projetos/PI/atividade2/saidas/saidas_questao2/03_compressao/compressao_percentil_70.png",
+      "compressao": {
+        "percentil": 70,
+        "limiar_magnitude": 4293.4521484375,
+        "coeficientes_totais": 572416,
+        "coeficientes_mantidos": 171725,
+        "coeficientes_zerados": 400691,
+        "taxa_zerados": 0.6999996506037567
+      },
+      "imagem": {
+        "min": 0,
+        "max": 255,
+        "media": 74.77264437052773,
+        "desvio_padrao": 83.03920528571186,
+        "shape": [
+          559,
+          1024
+        ]
+      }
+    },
+    {
+      "label": "p85",
+      "arquivo": "/home/william/Projetos/PI/atividade2/saidas/saidas_questao2/03_compressao/compressao_percentil_85.png",
+      "compressao": {
+        "percentil": 85,
+        "limiar_magnitude": 7454.66015625,
+        "coeficientes_totais": 572416,
+        "coeficientes_mantidos": 85863,
+        "coeficientes_zerados": 486553,
+        "taxa_zerados": 0.8499989518112702
+      },
+      "imagem": {
+        "min": 0,
+        "max": 255,
+        "media": 75.30007896355099,
+        "desvio_padrao": 77.33809036362165,
+        "shape": [
+          559,
+          1024
+        ]
+      }
+    },
+    {
+      "label": "p95",
+      "arquivo": "/home/william/Projetos/PI/atividade2/saidas/saidas_questao2/03_compressao/compressao_percentil_95.png",
+      "compressao": {
+        "percentil": 95,
+        "limiar_magnitude": 17487.08203125,
+        "coeficientes_totais": 572416,
+        "coeficientes_mantidos": 28621,
+        "coeficientes_zerados": 543795,
+        "taxa_zerados": 0.9499996506037567
+      },
+      "imagem": {
+        "min": 0,
+        "max": 255,
+        "media": 74.66732411393113,
+        "desvio_padrao": 77.78622455686238,
+        "shape": [
+          559,
+          1024
+        ]
+      }
+    }
+  ],
+  "histogramas": {
+    "original": "/home/william/Projetos/PI/atividade2/saidas/saidas_questao2/04_histogramas/histograma_original.png",
+    "comprimidas": {
+      "p70": "/home/william/Projetos/PI/atividade2/saidas/saidas_questao2/04_histogramas/histograma_p70.png",
+      "p85": "/home/william/Projetos/PI/atividade2/saidas/saidas_questao2/04_histogramas/histograma_p85.png",
+      "p95": "/home/william/Projetos/PI/atividade2/saidas/saidas_questao2/04_histogramas/histograma_p95.png"
+    },
+    "comparativo": "/home/william/Projetos/PI/atividade2/saidas/saidas_questao2/04_histogramas/comparativo_histogramas_original_vs_comprimidas.png"
+  }
+}

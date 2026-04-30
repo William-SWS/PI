@@ -1,0 +1,81 @@
+{
+  "input": "/home/william/Projetos/PI/atividade2/image2.png",
+  "outdir": "/home/william/Projetos/PI/atividade2/saidas/saidas_questao2",
+  "gammas": [
+    0.25,
+    0.5,
+    1.0,
+    1.5,
+    2.0,
+    3.0
+  ],
+  "comparativo": "/home/william/Projetos/PI/atividade2/saidas/saidas_questao2/comparativo_gama.png",
+  "resultados": {
+    "0.25": {
+      "arquivo": "/home/william/Projetos/PI/atividade2/saidas/saidas_questao2/imagem2_gama_0.25.png",
+      "min": 0,
+      "max": 255,
+      "media": 42.36848376006261,
+      "desvio_padrao": 84.87163571776418,
+      "shape": [
+        559,
+        1024
+      ]
+    },
+    "0.5": {
+      "arquivo": "/home/william/Projetos/PI/atividade2/saidas/saidas_questao2/imagem2_gama_0.5.png",
+      "min": 0,
+      "max": 255,
+      "media": 49.68834029796512,
+      "desvio_padrao": 91.29746548523606,
+      "shape": [
+        559,
+        1024
+      ]
+    },
+    "1.0": {
+      "arquivo": "/home/william/Projetos/PI/atividade2/saidas/saidas_questao2/imagem2_gama_1.0.png",
+      "min": 0,
+      "max": 255,
+      "media": 60.97269118962433,
+      "desvio_padrao": 94.67225257885516,
+      "shape": [
+        559,
+        1024
+      ]
+    },
+    "1.5": {
+      "arquivo": "/home/william/Projetos/PI/atividade2/saidas/saidas_questao2/imagem2_gama_1.5.png",
+      "min": 0,
+      "max": 255,
+      "media": 73.44517972942755,
+      "desvio_padrao": 93.21253162867053,
+      "shape": [
+        559,
+        1024
+      ]
+    },
+    "2.0": {
+      "arquivo": "/home/william/Projetos/PI/atividade2/saidas/saidas_questao2/imagem2_gama_2.0.png",
+      "min": 0,
+      "max": 255,
+      "media": 86.15065441916369,
+      "desvio_padrao": 90.08623575029523,
+      "shape": [
+        559,
+        1024
+      ]
+    },
+    "3.0": {
+      "arquivo": "/home/william/Projetos/PI/atividade2/saidas/saidas_questao2/imagem2_gama_3.0.png",
+      "min": 0,
+      "max": 255,
+      "media": 108.14226716234347,
+      "desvio_padrao": 83.992311935995,
+      "shape": [
+        559,
+        1024
+      ]
+    }
+  }
+}
