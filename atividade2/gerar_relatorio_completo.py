@@ -135,25 +135,53 @@ def create_enhanced_markdown(base_dir, original_content):
 
 #### 5.3.5 Análise por Histogramas
 
+A análise por histogramas permite avaliar o impacto da compressão na distribuição de intensidades da imagem. A seguir são apresentados os histogramas da imagem original e das versões comprimidas com diferentes percentis de limiar de magnitude.
+
+##### 5.3.5.1 Histograma da Imagem Original
+
 ![Histograma Original]({saidas_q2}/04_histogramas/histograma_original.png)
 
-*Figura 10: Histograma da imagem original.*
+*Figura 10: Histograma da imagem original, mostrando a distribuição de intensidades sem compressão.*
+
+O histograma original representa a distribuição de intensidades da imagem antes de qualquer processamento de compressão. Esta distribuição serve como referência para comparar os efeitos da compressão por limiar de magnitude.
+
+##### 5.3.5.2 Histograma da Imagem Comprimida (Percentil 70)
 
 ![Histograma P70]({saidas_q2}/04_histogramas/histograma_p70.png)
 
 *Figura 11: Histograma da imagem comprimida com percentil 70.*
 
+A compressão com percentil 70 remove 30% dos coeficientes de menor magnitude no domínio da frequência. O histograma resultante mostra uma distribuição de intensidades que mantém boa similaridade com o original, indicando que a qualidade visual é preservada mesmo com esta compressão moderada.
+
+##### 5.3.5.3 Histograma da Imagem Comprimida (Percentil 85)
+
 ![Histograma P85]({saidas_q2}/04_histogramas/histograma_p85.png)
 
 *Figura 12: Histograma da imagem comprimida com percentil 85.*
+
+Com o percentil 85, 15% dos coeficientes são removidos. O histograma começa a mostrar alterações mais perceptíveis na distribuição de intensidades, refletindo o aumento da perda de informação espectral. Ainda assim, a estrutura geral da imagem permanece reconhecível.
+
+##### 5.3.5.4 Histograma da Imagem Comprimida (Percentil 95)
 
 ![Histograma P95]({saidas_q2}/04_histogramas/histograma_p95.png)
 
 *Figura 13: Histograma da imagem comprimida com percentil 95.*
 
+A compressão com percentil 95 é mais agressiva, removendo apenas 5% dos coeficientes de maior magnitude. O histograma resultante mostra uma distribuição significativamente alterada em relação ao original, indicando maior perda de detalhes e degradação da qualidade visual.
+
+##### 5.3.5.5 Comparativo de Histogramas
+
 ![Comparativo de Histogramas]({saidas_q2}/04_histogramas/comparativo_histogramas_original_vs_comprimidas.png)
 
 *Figura 14: Comparativo de histogramas entre imagem original e versões comprimidas.*
+
+O gráfico comparativo permite visualizar simultaneamente a evolução da distribuição de intensidades conforme aumenta o nível de compressão. É possível observar que:
+
+- O histograma P70 (percentil 70) mantém a forma mais próxima do original
+- O histograma P85 (percentil 85) mostra desvios moderados
+- O histograma P95 (percentil 95) apresenta as maiores alterações
+
+Esta análise demonstra o trade-off entre taxa de compressão e qualidade visual: quanto maior o percentil de limiar, maior a compressão, mas também maior a perda de fidelidade à imagem original.
 """,
     }
 
