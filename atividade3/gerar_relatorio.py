@@ -25,13 +25,11 @@ class RelatorioPDF(FPDF):
     def titulo_secao(self, texto):
         self.set_font("Helvetica", "B", 14)
         self.ln(4)
-        self.cell(0, 10, texto)
-        self.ln(6)
-        x1 = self.get_x()
-        y1 = self.get_y()
+        self.cell(0, 10, texto, new_x="LMARGIN", new_y="NEXT")
+        self.ln(3)
         self.set_draw_color(0)
         self.set_line_width(0.5)
-        self.line(x1, y1, x1 + 190, y1)
+        self.line(10, self.get_y(), 200, self.get_y())
         self.ln(4)
 
     def subtitulo(self, texto):
