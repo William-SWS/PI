@@ -93,18 +93,21 @@ def gerar_relatorio():
         "A compressao foi implementada seguindo as etapas do padrao JPEG, "
         "com todas as transformacoes realizadas manualmente. "
         "A imagem colorida foi convertida para tons de cinza utilizando a "
-        "formula de luminancia (0.299*R + 0.587*G + 0.114*B), sem uso de "
-        "funcoes prontas do OpenCV."
+        "formula de luminancia (0.299*R + 0.587*G + 0.114*B) de forma "
+        "vetorizada com NumPy, dispensando lacos manuais sobre os pixels."
     )
     pdf.corpo(
         "A imagem foi dividida em blocos de 64x64 pixels. Para cada bloco, "
-        "aplicou-se a DCT-II bidimensional manual (O(N^4) por bloco), "
-        "seguida de quantizacao dos coeficientes utilizando a matriz de "
-        "luminancia padrao do JPEG, expandida via produto de Kronecker "
-        "para 64x64 e multiplicada por um fator de qualidade 2.0 para "
-        "aumentar a compressao. Apos a desquantizacao, a IDCT-III "
-        "reconstruiu cada bloco, e os blocos foram recombinados para "
-        "formar a imagem final."
+        "aplicou-se a DCT-II bidimensional utilizando uma matriz de cossenos "
+        "precomputada, o que reduz a complexidade de O(N^4) para O(N^3) "
+        "por bloco e torna o codigo mais legivel: a DCT e expressa como "
+        "c * (C^T * bloco * C) * c^T, onde C e a matriz de cossenos e c "
+        "sao os fatores de normalizacao. Apos a DCT, os coeficientes sao "
+        "quantizados com a matriz de luminancia padrao do JPEG, expandida "
+        "via produto de Kronecker para 64x64 e multiplicada por um fator "
+        "de qualidade 2.0 para aumentar a compressao. A IDCT-III "
+        "reconstroi cada bloco usando a mesma matriz C, e os blocos sao "
+        "recombinados para formar a imagem final."
     )
     pdf.corpo(
         "A imagem utilizada foi 'runner.png', relacionada ao tema do "
@@ -165,7 +168,9 @@ def gerar_relatorio():
     pdf.corpo(
         "Foram implementados manualmente cinco descritores para caracterizar "
         "imagens em tons de cinza, combinando medidas estatisticas globais "
-        "e medidas estruturais locais:"
+        "e medidas estruturais locais. A conversao para tons de cinza utiliza "
+        "operacoes vetorizadas do NumPy, e os descritores usam lacos manuais "
+        "para percorrer os pixels, sem recorrer a funcoes prontas:"
     )
     desc_list = [
         "- Media (brilho geral): soma de todos os pixels dividida pelo total.",
