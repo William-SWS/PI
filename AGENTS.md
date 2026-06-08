@@ -1,225 +1,83 @@
-# AGENTS.md - PI Project (Processamento de Imagens)
+# AGENTS.md - PI (Processamento de Imagens)
 
-## Project Overview
-**PI** is an educational image processing project emphasizing **manual algorithm implementations**. Two activities (atividade1, atividade2) contain Jupyter notebooks paired with Python CLI scripts that process images, calculate metrics, and output structured JSON results.
-
-### Key Constraints
-- ⚠️ **Manual implementation required**: No ready-made library filters (`cv2.filter2D`, `cv2.GaussianBlur`, etc.)
-- ✓ **Allowed libraries**: PIL/Pillow for I/O, NumPy for arrays, Matplotlib for visualization
-- ✓ **All I/O structured**: JSON metadata + PNG images in `saidas/saidas_questaoX/` directories
-
----
-
-## File Organization
+## Project Structure
 
 ```
 PI/
-├── atividade1/                 # Activity 1 (basic operations)
-├── atividade2/                 # Activity 2 (Q1: filters, Q2: gamma, Q2B: FFT)
-│   ├── q1.py, q1.ipynb        # 11 spatial filters (manual convolution)
-│   ├── q2.py, q2.ipynb        # Gamma correction
-│   ├── questao2.py            # FFT domain filtering
-│   ├── requirements.txt        # Dependencies: Pillow, numpy, matplotlib, opencv-python
-│   ├── README.md              # Execution guide
-│   └── saidas/                # Outputs directory
-├── engine/                     # Shared utilities (metricas.py, fourier.py, gaussian.py, etc.)
-├── imagens questao 3/         # Test images
-└── .git/                       # Version control
+├── atividade1/          # 6 basic operations (Jupyter notebooks, PIL)
+├── atividade2/          # Q1: 11 spatial filters, Q2: gamma, Q2B: FFT (Python CLI, PIL)
+├── atividade3/          # Q1: DCT compression, Q2: image descriptors (Python scripts, OpenCV)
+│   ├── scripts/q1.py, q2.py
+│   ├── images/          # input images
+│   └── resultados/      # script outputs
+├── engine/              # standalone practice scripts (NOT imported by atividades)
+└── imagens questao 3/   # legacy test images
 ```
 
----
+## Execution
 
-## How to Execute
-
-### Quick Start
 ```bash
-cd /home/william/Projetos/PI
-pip install -r atividade2/requirements.txt
+pip install -r atividade2/requirements.txt  # Pillow, numpy, matplotlib
 
-# Run Q1 (spatial filters)
+# Atividade 2 (CLI with argparse, JSON metrics output)
 python atividade2/q1.py --input atividade2/imageq1.png
-
-# Run Q2 (gamma correction)
 python atividade2/q2.py --gammas 0.5,1.0,2.0
-
-# Run Q2B (FFT domain)
 python atividade2/questao2.py --input atividade2/image2.png
+
+# Atividade 3 (hardcoded paths, no CLI args)
+python atividade3/scripts/q1.py    # reads images/blusa2.png -> resultados/q3_64x64/
+python atividade3/scripts/q2.py    # reads images/, writes resultados/q4/
 ```
 
-### Standard CLI Arguments
-- `--input` / `-i`: Image path (required or auto-detects fallback)
-- `--outdir` / `-o`: Output directory (defaults to `atividade2/saidas/saidas_questaoX`)
-- Question-specific: `--gammas`, `--radii`, `--percentiles`, `--band_pairs`
+## Key Conventions by Atividade
 
----
+| | Library | Args | Output | Metrics |
+|---|---|---|---|---|
+| atividade1 | PIL | Notebook | Images | No |
+| atividade2 | PIL | argparse --input/--outdir | PNG + JSON | min/max/mean/std |
+| atividade3 | OpenCV | None (hardcoded) | PNG only | None |
 
-## Key Files to Reference
+## Image I/O Patterns
 
-| File | Purpose | Pattern |
-|------|---------|---------|
-| [atividade2/q1.py](atividade2/q1.py) | Manual convolution (11 kernels) | CLI + JSON metrics |
-| [atividade2/q2.py](atividade2/q2.py) | Pixel-wise gamma transform | Multi-output handling |
-| [atividade2/questao2.py](atividade2/questao2.py) | FFT filtering + compression | Complex workflow with masks |
-| [atividade2/README.md](atividade2/README.md) | Execution docs | Latest Q1/Q2 commands |
-| [engine/metricas.py](engine/metricas.py) | Statistics helpers | Reusable metric calculation |
-
----
-
-## Core Conventions
-
-### 1. Image I/O
+**PIL (atividade1, atividade2):**
 ```python
-# Load
-img = Image.open(path).convert('L')  # Grayscale with PIL
+from PIL import Image
+img = Image.open(path).convert('L')                     # grayscale
 arr = np.array(img, dtype=np.float32)
-
-# Grayscale conversion (manual, NOT cv2.cvtColor)
-gray = 0.114 * b_chan + 0.587 * g_chan + 0.299 * r_chan  # Luminance formula
-
-# Save
 arr_u8 = np.clip(arr, 0, 255).astype(np.uint8)
-Image.fromarray(arr_u8).save(output_path)
+Image.fromarray(arr_u8).save('output.png')
+# Manual luminance (NOT cv2.cvtColor):
+gray = 0.114 * b + 0.587 * g + 0.299 * r
 ```
 
-### 2. Output Structure (Always)
-- **Images**: `q1_h1.png`, `q1_h2.png`, ..., `imagem2_gama_0.5.png`, etc.
-- **Metadata**: `resultado_metricas_execucao.json` with timestamp, parameters, metrics
-
-### 3. Metrics JSON Format
-```json
-{
-  "timestamp": "2026-05-09T10:30:00",
-  "input": "/path/to/image.jpg",
-  "outdir": "/path/to/saidas/",
-  "parameters": {...},
-  "resultados": {
-    "filename": {
-      "arquivo": "path/to/output.png",
-      "min": 0,
-      "max": 255,
-      "mean": 128.5,
-      "desvio_padrao": 50.2,
-      "shape": [400, 680]
-    }
-  }
-}
-```
-
-### 4. For Every Output Image, Calculate
+**OpenCV (atividade3):**
 ```python
-{
-    "min": int(img.min()),
-    "max": int(img.max()),
-    "mean": float(np.mean(img)),
-    "desvio_padrao": float(np.std(img)),  # Portuguese key name
-    "shape": [int(img.shape[0]), int(img.shape[1])]
-}
+import cv2
+img = cv2.imread(path)                                  # BGR
+gray = to_gray(img)                                     # manual loop, same luminance formula
+cv2.imwrite('output.png', gray)
 ```
 
----
+## Critical Constraints
 
-## Common Patterns
+- All algorithms must be manual — no `cv2.filter2D`, `cv2.GaussianBlur`, `cv2.dct`, etc.
+- Allowed: I/O (PIL/OpenCV), NumPy arrays, Matplotlib display/save
+- Output images: always PNG, uint8 [0, 255], clipping required
+- atividade2 scripts use `SCRIPT_DIR` for path resolution; atividade3 scripts use `SCRIPT_DIR` too
 
-### CLI Setup
-```python
-from argparse import ArgumentParser
+## Atividade 3 Specifics
 
-parser = ArgumentParser()
-parser.add_argument('--input', '-i', required=False)
-parser.add_argument('--outdir', '-o', default='atividade2/saidas/saidas_questao2')
-args = parser.parse_args()
+- `q1.py`: DCT compression with manual DCT-II/IDCT-III, configurable `BLOCK_SIZE` (default 64), quality factor, quantization matrix
+- `q2.py`: 5 image descriptors — mean, variance, energy, horizontal/vertical difference (manual loops)
+- PDF report generated by `gerar_relatorio.py` (fpdf2) -> `relatorio_atividade3.pdf`
 
-if not args.input:
-    default = os.path.join(os.path.dirname(__file__), 'imagem_padrao.jpg')
-    if os.path.exists(default):
-        args.input = default
-    else:
-        parser.error('No input image found')
-```
+## Common Pitfalls
 
-### Directory Handling
-```python
-def ensure_outdir(path):
-    os.makedirs(path, exist_ok=True)
-
-ensure_outdir(args.outdir)
-```
-
-### Normalize to uint8 (for visualization)
-```python
-def minmax_to_uint8(arr):
-    arr = np.asarray(arr, dtype=np.float32)
-    min_v, max_v = float(arr.min()), float(arr.max())
-    if max_v <= min_v:
-        return np.zeros_like(arr, dtype=np.uint8)
-    norm = (arr - min_v) * (255.0 / (max_v - min_v))
-    return np.clip(norm, 0, 255).astype(np.uint8)
-```
-
-### Save Results
-```python
-payload = {
-    "input": str(input_path),
-    "outdir": str(output_dir),
-    "parameters": {...},
-    "resultados": metrics_dict
-}
-with open(os.path.join(args.outdir, 'resultado_metricas_execucao.json'), 'w') as f:
-    json.dump(payload, f, indent=2, ensure_ascii=False)
-```
-
----
-
-## ⚠️ Common Pitfalls
-
-| Problem | Solution |
-|---------|----------|
-| Module import fails | `pip install -r atividade2/requirements.txt` from project root |
-| Image not found | Use absolute paths or place in script directory; check fallback chain |
-| Wrong color formula | Use EXACT luminance: `0.114*B + 0.587*G + 0.299*R` (not avg) |
-| JSON serialization error | Wrap NumPy: `int(x)`, `float(x)` |
-| Output image looks wrong | Ensure uint8 conversion + clipping to [0, 255] |
-| "Forbidden function used" | Replace `cv2.filter2D()` with manual convolution loops |
-
----
-
-## Implementation Checklist for New Scripts
-
-- [ ] Accept `--input`, `--outdir`, and question-specific params via argparse
-- [ ] Implement core algorithm **manually** (no library shortcuts)
-- [ ] Load images with PIL, convert to uint8 for saving
-- [ ] Calculate metrics (min, max, mean, std, shape) for all outputs
-- [ ] Normalize output arrays using `minmax_to_uint8()` before saving
-- [ ] Save all images as PNG with descriptive filenames
-- [ ] Generate `resultado_metricas_execucao.json` with complete metadata
-- [ ] Include docstring explaining rules and output locations
-- [ ] Test with sample image; verify outputs exist and JSON is valid
-- [ ] Use Portuguese key names in JSON (`desvio_padrao`, not `std_dev`)
-
----
-
-## Debugging Commands
-
-```bash
-# Verify dependencies
-python -c "import PIL, numpy, cv2, matplotlib; print('✓ All deps OK')"
-
-# Test script help
-python atividade2/q1.py --help
-
-# Validate JSON output
-python -m json.tool atividade2/saidas/saidas_questao2/resultado_metricas_execucao.json
-
-# List outputs
-ls -lah atividade2/saidas/saidas_questao2/
-```
-
----
-
-## Next Steps for Customization
-
-Consider adding agent skills for:
-- **Backend Development**: Setup validation, error handling patterns
-- **Testing**: Pytest structure for image comparison tests
-- **Documentation**: Standard docstring format for image processing functions
-- **Security**: Input validation for file paths and numeric parameters
+| Problem | Fix |
+|---|---|
+| ModuleNotFoundError | `pip install -r atividade2/requirements.txt` from project root |
+| Image not found | Scripts use `SCRIPT_DIR`-relative paths; run from project root |
+| Wrong luminance | `0.114*B + 0.587*G + 0.299*R` — NOT average of channels |
+| JSON fails | Wrap numpy values: `int(x)`, `float(x)` |
+| Output looks wrong | Clip to [0,255], cast to uint8 before saving |
+| Forbidden function | Replace with manual loops (listings 3 lines) |
