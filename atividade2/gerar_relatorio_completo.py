@@ -125,6 +125,22 @@ def create_enhanced_markdown(base_dir, original_content):
 
 *Figura 8: Imagens filtradas no domínio da frequência.*
 
+#### 5.3.3.1 Espectros das Imagens Filtradas
+
+| Espectro Passa-Baixa r=15 | Espectro Passa-Baixa r=30 | Espectro Passa-Baixa r=60 |
+|---------------------------|---------------------------|---------------------------|
+| ![Espectro PB r15]({saidas_q2}/02_filtradas/espectro_passabaixa_r15.png) | ![Espectro PB r30]({saidas_q2}/02_filtradas/espectro_passabaixa_r30.png) | ![Espectro PB r60]({saidas_q2}/02_filtradas/espectro_passabaixa_r60.png) |
+
+| Espectro Passa-Alta r=15 | Espectro Passa-Alta r=30 | Espectro Passa-Alta r=60 |
+|--------------------------|--------------------------|--------------------------|
+| ![Espectro PA r15]({saidas_q2}/02_filtradas/espectro_passaalta_r15.png) | ![Espectro PA r30]({saidas_q2}/02_filtradas/espectro_passaalta_r30.png) | ![Espectro PA r60]({saidas_q2}/02_filtradas/espectro_passaalta_r60.png) |
+
+| Espectro Passa-Faixa 10-30 | Espectro Passa-Faixa 20-50 | Espectro Rejeita-Faixa 10-30 | Espectro Rejeita-Faixa 20-50 |
+|---------------------------|---------------------------|-------------------------------|-------------------------------|
+| ![Espectro PF 10-30]({saidas_q2}/02_filtradas/espectro_passafaixa_r10_30.png) | ![Espectro PF 20-50]({saidas_q2}/02_filtradas/espectro_passafaixa_r20_50.png) | ![Espectro RF 10-30]({saidas_q2}/02_filtradas/espectro_rejeitafaixa_r10_30.png) | ![Espectro RF 20-50]({saidas_q2}/02_filtradas/espectro_rejeitafaixa_r20_50.png) |
+
+*Figura 8.1: Espectros de frequência das imagens filtradas, mostrando os componentes preservados após cada filtro.*
+
 #### 5.3.4 Compressão por Magnitude
 
 | Compressão P70 | Compressão P85 | Compressão P95 |
