@@ -1,0 +1,14 @@
+# Processamento numérico e imagens (todas as atividades e engine/)
+numpy>=1.24,<3
+Pillow>=9,<13
+matplotlib>=3.7,<4
+opencv-python>=4.8,<5
+
+# Execução e exportação dos notebooks das atividades 1 e 2
+jupyterlab>=4,<5
+nbconvert>=7,<8
+
+# Geração dos relatórios PDF das atividades 2, 3 e 4
+fpdf2>=2.7,<3
+Markdown>=3.4,<4
+WeasyPrint>=60,<70
